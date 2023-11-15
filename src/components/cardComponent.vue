@@ -8,7 +8,14 @@
         <div class="img-container">
             <img :src="getFlagUrl" :alt="original_language">
         </div>
-        <div class="description">{{ vote_average }}</div>
+        <div class="description d-flex flex-row justify-content-start gap-2 align-items-center">
+            <!-- score -->
+            {{ this.getStar }}
+            <!-- stars -->
+            <div class="img-container" v-for="num in getStar">
+                <img src="../assets/images/star.png" alt="">
+            </div>
+        </div>
 
     </div>
 </template>
@@ -48,6 +55,9 @@ export default {
         },
         builtImgUrl() {
             return 'https://image.tmdb.org/t/p/w342' + this.poster_path
+        },
+        getStar() {
+            return Math.floor(this.vote_average)
         }
     }
 }

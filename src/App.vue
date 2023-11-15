@@ -26,8 +26,6 @@ export default {
       axios
         .get(url, { params: this.store.params })
         .then((response) => {
-          console.log(store.params.query)
-          console.log(response.data.results)
           this.store.movieList = response.data.results;
 
         }

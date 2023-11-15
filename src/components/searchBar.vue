@@ -28,7 +28,7 @@ export default {
             if (this.data) {
                 this.store.params.query = this.data
                 this.$emit('change-values')
-                console.log(this.data + " store: " + this.store.params.query)
+                
 
             }
             this.plHold = this.data
