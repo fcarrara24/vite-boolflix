@@ -2,14 +2,8 @@
     <main class="p-5">
         <section class=" text-white">
             <h2 class=" pb-3">MOVIES</h2>
-            <div class="row">
-                <!-- <div class="col-12 col-md-4 col-lg-3 debugCol pb-5" v-for="(movie, index) in store.movieList">
-                    {{ movie.title }} <br />
-                    titlolo or: {{ movie.original_title }} <br />
-                    lingua: {{ movie.original_language }} <br />
-                    voto: {{ movie.vote_average }}
-                </div> -->
-                <div class="cardWrapper" v-for="(movie, index) in store.movieList">
+            <div class="row d-flex flex-row flex-wrap justify-content-start">
+                <div class="cardWrapper w-auto flex-grow-1 p-2" v-for="(movie, index) in store.movieList">
                     <CardComponent class="col-12 col-md-4 col-lg-3 debugCol pb-5" key="movie" :title="movie.title"
                         :original_title="movie.original_title" :original_language="movie.original_language"
                         :vote_average="movie.vote_average" />
