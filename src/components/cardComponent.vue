@@ -1,5 +1,8 @@
 <template>
-    <div class="my-card d-flex flex-column p-3 w-100">
+    <div class="my-card d-flex flex-column p-3 ">
+        <div class="big-img-container w-100 ">
+            <img :src="builtImgUrl" alt="">
+        </div>
         <div class="title">{{ title }}</div>
         <div class="description">{{ original_title }}</div>
         <div class="img-container">
@@ -17,7 +20,9 @@ export default {
         title: String,
         original_title: String,
         original_language: String,
-        vote_average: String
+        vote_average: String,
+        poster_path: String
+
     }
 
     ,
@@ -40,6 +45,9 @@ export default {
             }
             console.log(parsedString)
             return 'https://flagsapi.com/' + parsedString + '/flat/64.png';
+        },
+        builtImgUrl() {
+            return 'https://image.tmdb.org/t/p/w342' + this.poster_path
         }
     }
 }
@@ -51,8 +59,12 @@ export default {
     background-color: white;
     min-height: 200px;
     min-width: 200px;
+    height: 100%;
 
+}
 
+.big-img-container {
+    width: 100%;
 }
 
 .img-container {
@@ -60,6 +72,7 @@ export default {
 }
 
 img {
+    min-width: 100%;
     max-width: 100%;
     height: auto;
 }
