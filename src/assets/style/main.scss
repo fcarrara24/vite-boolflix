@@ -1,6 +1,6 @@
 @use './partials/variables' as *;
 @import 'bootstrap/scss/bootstrap';
-@import '../webfonts';
+//@import '../webfonts';
 
 $fa-font-path: '../webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
