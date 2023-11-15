@@ -1,11 +1,14 @@
 <template>
-  <SearchBar class="w-100 bg-black p-3" @change-values="getMovies, getTv" />
+  <SearchBar class="w-100 bg-black p-3" @change-values="getMovies(), getTv()" />
   <main>
     <section class="container">
       <h2>MOVIES</h2>
       <div class="row">
-        <div class="col-12 col-md-4 col-lg-3" v-for="(movie, index) in store.movieList">
-          {{ movie.title }}
+        <div class="col-12 col-md-4 col-lg-3 debugCol" v-for="(movie, index) in store.movieList">
+          {{ movie.title }} <br />
+          titlolo or: {{ movie.original_title }} <br />
+          lingua: {{ movie.original_language }} <br />
+          voto: {{ movie.vote_average }}
         </div>
       </div>
     </section>
@@ -13,8 +16,11 @@
     <section class="container">
       <h2>TV</h2>
       <div class="row">
-        <div class="col-12 col-md-4 col-lg-3" v-for="(movie, index) in store.seriesList">
-          {{ movie.name }}
+        <div class="col-12 col-md-4 col-lg-3 debugCol" v-for="(serie, index) in store.seriesList">
+          titlolo: {{ serie.name }} <br />
+          titlolo or: {{ serie.original_name }} <br />
+          lingua: {{ serie.original_language }} <br />
+          voto: {{ serie.vote_average }}
         </div>
       </div>
     </section>
@@ -42,6 +48,7 @@ export default {
       axios
         .get(url, { params: this.store.params })
         .then((response) => {
+          console.log(store.params.query)
           console.log(response.data.results)
           this.store.movieList = response.data.results;
 
@@ -70,4 +77,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.debugCol {
+  height: 200px;
+}
+</style>

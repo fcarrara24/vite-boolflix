@@ -1,5 +1,5 @@
 <template>
-    <div class=" d-flex flex-row justify-content-between ">
+    <div class=" d-flex flex-row justify-content-between " @keyup.enter="emitParams()">
         <input v-model="data" type="text" />
         <button @click="emitParams()">search</button>
     </div>
@@ -22,7 +22,8 @@ export default {
 
             if (this.data) {
                 this.store.params.query = this.data
-                this.$emit = ('change-values')
+                this.$emit('change-values')
+                console.log(this.data + " store: " + this.store.params.query)
             }
 
         }
