@@ -1,18 +1,47 @@
 <template>
-    <div>
+    <main class="p-5">
+        <section class=" text-white">
+            <h2 class=" pb-3">MOVIES</h2>
+            <div class="row">
+                <!-- <div class="col-12 col-md-4 col-lg-3 debugCol pb-5" v-for="(movie, index) in store.movieList">
+                    {{ movie.title }} <br />
+                    titlolo or: {{ movie.original_title }} <br />
+                    lingua: {{ movie.original_language }} <br />
+                    voto: {{ movie.vote_average }}
+                </div> -->
+                <div class="cardWrapper" v-for="(movie, index) in store.movieList">
+                    <CardComponent class="col-12 col-md-4 col-lg-3 debugCol pb-5" key="movie" :title="movie.title"
+                        :original_title="movie.original_title" :original_language="movie.original_language"
+                        :vote_average="movie.vote_average" />
+                </div>
+            </div>
+        </section>
 
-    </div>
+        <section class=" text-white">
+            <h2>TV</h2>
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3 debugCol pb-5" v-for="(serie, index) in store.seriesList">
+                    titlolo: {{ serie.name }} <br />
+                    titlolo or: {{ serie.original_name }} <br />
+                    lingua: {{ serie.original_language }} <br />
+                    voto: {{ serie.vote_average }}
+                </div>
+            </div>
+        </section>
+    </main>
 </template>
 
 <script>
-
+import { store } from '../data/store'
+import CardComponent from './cardComponent.vue';
 export default {
     name: "mainComponent",
     data() {
         return {
-
-        }
-    }
+            store,
+        };
+    },
+    components: { CardComponent }
 }
 </script>
 

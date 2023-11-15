@@ -1,35 +1,13 @@
 <template>
   <SearchBar class="w-100 bg-black p-3" @change-values="getMovies(), getTv()" />
-  <main>
-    <section class="container">
-      <h2>MOVIES</h2>
-      <div class="row">
-        <div class="col-12 col-md-4 col-lg-3 debugCol" v-for="(movie, index) in store.movieList">
-          {{ movie.title }} <br />
-          titlolo or: {{ movie.original_title }} <br />
-          lingua: {{ movie.original_language }} <br />
-          voto: {{ movie.vote_average }}
-        </div>
-      </div>
-    </section>
+  <MainComponent />
 
-    <section class="container">
-      <h2>TV</h2>
-      <div class="row">
-        <div class="col-12 col-md-4 col-lg-3 debugCol" v-for="(serie, index) in store.seriesList">
-          titlolo: {{ serie.name }} <br />
-          titlolo or: {{ serie.original_name }} <br />
-          lingua: {{ serie.original_language }} <br />
-          voto: {{ serie.vote_average }}
-        </div>
-      </div>
-    </section>
-  </main>
   <div>
   </div>
 </template>
 
 <script>
+import MainComponent from './components/mainComponent.vue';
 import SearchBar from './components/searchBar.vue';
 import { store } from './data/store.js'
 import axios from 'axios'
@@ -65,10 +43,12 @@ export default {
 
         }
         )
-    }
+    },
+
   },
   components: {
-    SearchBar
+    SearchBar,
+    MainComponent
   },
   created() {
     this.getMovies();
