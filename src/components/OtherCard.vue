@@ -8,7 +8,9 @@
             <div v-if="hovered">
                 <div class="title">{{ title }}</div>
                 <div class="description">{{ original_title }}</div>
-                <div class="img-container"></div>
+                <div class="img-container">
+                    <img :src="getFlagUrl" @error="toDefSrc()">
+                </div>
                 <div class="description d-flex flex-row justify-content-start gap-2 align-items-center">
 
 
@@ -41,7 +43,7 @@ export default {
 
         return {
             hovered: false,
-            currentFlag: ''
+            error: false
         }
     },
     methods: {
@@ -52,11 +54,34 @@ export default {
         antiTrigger() {
             this.hovered = false
         },
+        toDefSrc() {
+            this.error = true
+        },
 
     },
     computed: {
         builtImgUrl() {
             return 'https://image.tmdb.org/t/p/w342' + this.poster_path
+        },
+
+        getFlagUrl() {
+            if (this.error) {
+                return 'https://flagsapi.com/' + 'GB' + '/flat/64.png';
+            } else {
+                let parsedString = this.original_language.toUpperCase().substring(0, 2)
+                if (parsedString === "EN") {
+                    parsedString = "GB"
+                } else if (parsedString === "JA") {
+                    parsedString = "JP"
+
+                } else if (parsedString === "ZH") {
+                    parsedString = "SG"
+
+                }
+
+                return 'https://flagsapi.com/' + parsedString + '/flat/64.png';
+            }
+
         }
     }
 }
