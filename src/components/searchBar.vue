@@ -5,7 +5,7 @@
             BOOLFLIX
         </div>
         <div class="search-container d-flex  flex-row">
-            <input v-model="data" type="text" />
+            <input v-model="textInput" type="text" />
             <div class="button bg-danger my-btn-search text-center p-2" @click="emitParams()">search</div>
         </div>
     </div>
@@ -18,21 +18,21 @@ export default {
     name: 'searchBar',
     data() {
         return {
-            data: '',
+            textInput: '',
             store,
         }
     },
+    emits: ['change-values'],
     methods: {
 
         emitParams() {
 
-            if (this.data) {
-                this.store.params.query = this.data
+            if (this.textInput) {
+                this.store.params.query = this.textInput
                 this.$emit('change-values')
 
 
             }
-            this.plHold = this.data
         }
     },
     emits: {

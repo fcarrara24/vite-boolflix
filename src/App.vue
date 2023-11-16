@@ -26,7 +26,7 @@ export default {
       axios
         .get(url, { params: this.store.params })
         .then((response) => {
-          this.store.movieList = response.data.results;
+          store.movieList = response.data.results;
 
         }
         )
@@ -37,7 +37,7 @@ export default {
         .get(url, { params: this.store.params })
         .then((response) => {
           console.log(response.data.results)
-          this.store.seriesList = response.data.results;
+          store.seriesList = response.data.results;
 
         }
         )
