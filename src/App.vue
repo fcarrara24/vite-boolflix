@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import MainComponent from './components/mainComponent.vue';
-import SearchBar from './components/searchBar.vue';
+import MainComponent from './components/MainComponent.vue';
+import SearchBar from './components/SearchBar.vue';
 import { store } from './data/store.js'
 import axios from 'axios'
 
