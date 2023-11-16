@@ -1,5 +1,5 @@
 <template>
-  <SearchBar class="w-100 bg-black p-3" @change-values="getMovies(), getTv()" />
+  <SearchBar class="w-100 bg-black p-2" @change-values="getMovies(), getTv()" />
   <MainComponent />
 
   <div>

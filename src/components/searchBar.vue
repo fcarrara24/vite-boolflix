@@ -1,11 +1,12 @@
 <template>
-    <div class=" d-flex flex-row justify-content-between  bg-black " @keyup.enter="emitParams()" placeholder="Cerca..">
+    <div class=" d-flex flex-row justify-content-between  bg-black position-fixed " @keyup.enter="emitParams()"
+        placeholder="Cerca..">
         <div class="title text-danger ">
             BOOLFLIX
         </div>
         <div class="search-container d-flex  flex-row">
             <input v-model="data" type="text" />
-            <div class="button bg-warning my-btn-search text-center p-2" @click="emitParams()">search</div>
+            <div class="button bg-danger my-btn-search text-center p-2" @click="emitParams()">search</div>
         </div>
     </div>
 </template>
@@ -28,7 +29,7 @@ export default {
             if (this.data) {
                 this.store.params.query = this.data
                 this.$emit('change-values')
-                
+
 
             }
             this.plHold = this.data
@@ -40,4 +41,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.title {
+    font-size: 2em;
+}
+</style>

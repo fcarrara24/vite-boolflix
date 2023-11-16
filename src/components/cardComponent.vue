@@ -4,24 +4,27 @@
         <!-- <div class="big-img-container w-100 ">
             <img :src="builtImgUrl" alt="">
         </div> -->
-        <div class="card-height">
-            <img :src="builtImgUrl" alt="" v-if="hovered">
-        </div>
-        <div v-if="hovered">
-            <div class="title">{{ title }}</div>
-            <div class="description">{{ original_title }}</div>
-            <div class="img-container">
-                <img :src="getFlagUrl" :alt="original_language">
-            </div>
-            <div class="description d-flex flex-row justify-content-start gap-2 align-items-center">
-                <!-- score -->
-                {{ this.getStar }}
-                <!-- stars -->
-                <div class="img-container" v-for="num in getStar">
-                    <img src="../assets/images/star.png" alt="">
+        <div class="card-height d-flex flex-column justify-content-end">
+            <img :src="builtImgUrl" alt="" class="miniImg" v-if="hovered">
+            <div class="z-hight  " v-if="hovered">
+                <div class="title">{{ title }}</div>
+                <div class="description">{{ original_title }}</div>
+                <div class="img-container">
+                    <img :src="currentFlag" @error="toDefSrc()">
+                    <!-- alt="https://flagsapi.com/GB/flat/64.png" -->
+                </div>
+                <div class="description d-flex flex-row justify-content-start gap-2 align-items-center">
+                    <!-- score -->
+                    {{ this.getStar }}
+                    <!-- stars -->
+                    <div class="img-container" v-for="num in 5" key="num">
+                        <!-- <img src="../assets/images/star.png" alt=""> -->
+                        <i class="fa-star" :class="(num <= Math.ceil(getStar / 2)) ? 'fa-solid' : 'fa-regular'"></i>
+                    </div>
                 </div>
             </div>
         </div>
+
 
     </div>
 </template>
@@ -45,7 +48,8 @@ export default {
 
 
         return {
-            hovered: false
+            hovered: false,
+            currentFlag: ''
         }
     },
     methods: {
@@ -54,13 +58,26 @@ export default {
         },
         antiTrigger() {
             this.hovered = false
-        }
+        },
+        toDefSrc() {
+            this.currentFlag = 'https://flagsapi.com/' + 'GB' + '/flat/64.png';
+        },
     },
     computed: {
+
+
+        builtImgUrl() {
+            return 'https://image.tmdb.org/t/p/w342' + this.poster_path
+        },
+        getStar() {
+            return Math.floor(this.vote_average)
+        }
+    },
+    created: {
         getFlagUrl() {
             let parsedString = this.original_language.toUpperCase().substring(0, 2)
             if (parsedString === "EN") {
-                parsedString = "US"
+                parsedString = "GB"
             } else if (parsedString === "JA") {
                 parsedString = "JP"
 
@@ -70,14 +87,8 @@ export default {
             }
             console.log(parsedString)
 
-            return 'https://flagsapi.com/' + parsedString + '/flat/64.png';
+            this.currentFlag = 'https://flagsapi.com/' + parsedString + '/flat/64.png';
         },
-        builtImgUrl() {
-            return 'https://image.tmdb.org/t/p/w342' + this.poster_path
-        },
-        getStar() {
-            return Math.floor(this.vote_average)
-        }
     }
 }
 </script>
@@ -104,7 +115,7 @@ export default {
 
 .card-height {
     //this will act as an image proportion keeper for the display of elements
-    height: 500px;
+    height: 600px;
     width: 400px;
 }
 
@@ -119,6 +130,15 @@ export default {
 img {
     min-width: 100%;
     max-width: 100%;
+    height: auto;
+}
+
+.z-hight {
+    z-index: 1000;
+}
+
+.miniImg {
+    width: 100px;
     height: auto;
 }
 </style>

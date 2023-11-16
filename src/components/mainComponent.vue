@@ -2,8 +2,8 @@
     <main class="p-5">
         <section class=" text-white">
             <h2 class=" p-5 pt-2">MOVIES</h2>
-            <div class="d-flex flex-row flex-wrap justify-content-start">
-                <div class=" w-auto flex-grow-1 p-2" v-for="(movie, index) in store.movieList">
+            <div class="d-flex flex-row flex-wrap justify-content-center">
+                <div class=" w-auto flex-grow-0 " v-for="(movie, index) in store.movieList">
                     <CardComponent class="col-3 col-md-4 col-lg-12 debugCol pb-5" key="movie" :title="movie.title"
                         :original_title="movie.original_title" :original_language="movie.original_language"
                         :vote_average="movie.vote_average" :poster_path="movie.poster_path" />
@@ -23,9 +23,9 @@
                 </div> -->
 
 
-                <div class="d-flex flex-row flex-wrap justify-content-start">
-                    <div class=" w-auto flex-grow-1 p-2" v-for="(serie, index) in store.seriesList">
-                        <CardComponent class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="serie.name"
+                <div class="d-flex flex-row flex-wrap justify-content-center">
+                    <div class=" w-auto flex-grow-0 " v-for="(serie, index) in store.seriesList">
+                        <CardComponent class="col-3 col-md-4 col-lg-12 debugCol " :title="serie.name"
                             :original_title="serie.original_title" :original_language="serie.original_language"
                             :vote_average="serie.vote_average" :poster_path="serie.poster_path" />
                     </div>

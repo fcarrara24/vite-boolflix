@@ -11,7 +11,7 @@ export const store = reactive({
         query: "",
         num: 20,
         offset: 0,
-        language: "it",
+        language: "it-IT",
     },
     error: "",
     loading: true,
