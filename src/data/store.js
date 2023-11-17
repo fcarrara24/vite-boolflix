@@ -14,12 +14,14 @@ export const store = reactive({
         num: 20,
         offset: 0,
         language: "it-IT",
+
     },
     error: "",
     loading: true,
     movieList: [],
-    seriesList: []
-
+    seriesList: [],
+    genreList: [],
+    filteredGenres: ''
 })
 
 /*

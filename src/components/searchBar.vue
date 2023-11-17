@@ -4,7 +4,12 @@
         <div class="title text-danger ">
             BOOLFLIX
         </div>
-        div.getGenre
+        <div class="genrefinder">
+            <select name="genreSelect" v-model="genre" id="" @change="selectGenre()">
+                <option value="" selected>ALL</option>
+                <option v-for="opt in store.genreList" :value="opt.id" :key="opt.id">{{ opt.name }}</option>
+            </select>
+        </div>
         <div class="search-container d-flex  flex-row">
             <input v-model="textInput" type="text" />
             <div class="button bg-danger my-btn-search text-center p-2" @click="emitParams()">search</div>
@@ -21,6 +26,7 @@ export default {
         return {
             textInput: '',
             store,
+            genre: '',
         }
     },
     emits: ['change-values'],
@@ -31,11 +37,17 @@ export default {
             if (this.textInput) {
                 this.store.params.query = this.textInput
                 this.$emit('change-values')
+                console.log(store.genreList[0])
 
 
             }
+        },
+        selectGenre() {
+            store.filteredGenres = this.genre
         }
+
     },
+
 
 }
 </script>

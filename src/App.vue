@@ -42,6 +42,14 @@ export default {
 
         })
     },
+    getGenreList() {
+      axios
+        .get(store.genresUrl, { params: store.params })
+        .then((response) => {
+          this.store.genreList = response.data.genres;
+        }
+        )
+    }
 
   },
   components: {
@@ -51,6 +59,7 @@ export default {
   created() {
     this.getMovies();
     this.getTv();
+    this.getGenreList();
   }
 }
 </script>

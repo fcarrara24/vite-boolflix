@@ -61,7 +61,8 @@ export default {
         cast: Array,
         movie: Object,
         isMovie: Boolean,
-        genre_ids: String
+        genre_ids: String,
+        genre_name: String
 
     },
     data() {
@@ -116,34 +117,28 @@ export default {
                                 this.cardCast = cast
 
                             }
-
                         }
-
-
                     }
                 })
 
 
         },
         getGenres() {
-            axios
-                .get(store.genresUrl, { params: store.params })
-                .then((response) => {
-                    response.data.genres.forEach(element => {
-                        if (element.id === this.genre_ids) {
-                            this.genre = element.name
+            store.genreList.forEach(element => {
+                if (element.id === this.genre_ids) {
+                    this.genre = element.name
 
-                            return
-                        }
-
-                    });
-                    if (this.genre === '') {
-                        this.genre = 'No genre found'
-
-                    }
+                    return
                 }
-                )
+
+            });
+            if (this.genre === '') {
+                this.genre = ''
+
+            }
         }
+
+
 
 
     },
