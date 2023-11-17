@@ -40,8 +40,7 @@ export default {
           console.log(response.data.results)
           store.seriesList = response.data.results;
 
-        }
-        )
+        })
     },
 
   },

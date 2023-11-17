@@ -9,9 +9,15 @@
             <div v-if="hovered" class="d-flex flex-column justify-content-between h-100 flip-card-back">
                 <div class="p-2 overflow-auto ">
                     {{ overview }}
-                    
+
+                </div>
+
+                <div class="cardcast">
+                    <span v-for="person in cardCast">{{ person }}</span>
                 </div>
                 <div>
+
+                    <div class="class">{{ authors }}</div>
                     <div class="title">{{ title }}</div>
                     <div class="description">{{ original_title }}</div>
                     <div class="img-container">
@@ -33,6 +39,9 @@
 </template>
 
 <script>
+import { store } from '../data/store'
+import axios from 'axios'
+
 export default {
     name: 'OtherCard',
     props: {
@@ -42,8 +51,10 @@ export default {
         vote_average: Number,
         poster_path: String,
         overview: String,
-        id: String,
-        cast: Array
+        id: Number,
+        cast: Array,
+        movie: Object,
+        isMovie: Boolean
 
     },
     data() {
@@ -52,32 +63,12 @@ export default {
         return {
             hovered: false,
             error: false,
-            clicked: false
+            clicked: false,
+            cardCast: []
         }
     },
     methods: {
-        getCredits() {
-            if (this.clicked) {
-                return
-            }
-            this.clicked = true
-            let cast = []
-            const endPoint = this.store.endPoint.movieCast + this.id + '/credits';
-            const params = {
-                api_key: this.store.params.api_key
-            }
-            axios
-                .get(this.store.apiUrl + endPoint, { params: params })
-                .then((response) => {
-                    console.log(response.data.casts)
-                    for (let i = 0; i < 5; i++) {
-                        if (response.data.cast[i]) {
-                            cast.push(response.data.cast[i])
-                        }
-                    }
-                })
 
-        },
         trigger() {
             this.hovered = true
 
@@ -87,6 +78,51 @@ export default {
         },
         toDefSrc() {
             this.error = true
+        },
+        getCredits() {
+            if (this.clicked) {
+                return
+            }
+            this.clicked = true
+            let cast = []
+            const myEndPoint = store.endPoint.movieCast + this.id + '/credits';
+            console.log(myEndPoint)
+            const params = {
+                api_key: store.params.api_key
+            }
+            axios
+                .get(store.apiUrl + myEndPoint, { params: params })
+                .then((response) => {
+                    console.log(response.data.casts)
+                    for (let i = 0; i < 5; i++) {
+                        if (response.data.cast[i]) {
+                            cast.push(response.data.cast[i].name)
+                        }
+                    }
+                    console.log(cast)
+                    const myId = this.id
+                    if (this.isMovie) {
+                        for (let i = 0; i < store.movieList.length; i++) {
+                            if (store.movieList[i].id === this.id) {
+                                store.movieList[i].casts = cast
+                                this.cardCast = cast
+
+                            }
+
+                        }
+
+                    } else {
+                        for (let i = 0; i < store.seriesList.length; i++) {
+                            if (store.seriesList[i].id === this.id) {
+                                store.seriesList[i].casts = cast
+                                this.cardCast = cast
+                            }
+
+                        }
+                    }
+                })
+
+
         },
 
     },

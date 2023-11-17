@@ -7,7 +7,7 @@
                     <OtherCard class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="movie.title"
                         :original_title="movie.original_title" :original_language="movie.original_language"
                         :vote_average="movie.vote_average" :poster_path="movie.poster_path" :overview="movie.overview"
-                        :id="movie.id" />
+                        :id="movie.id" :movie="movie" isMovie="true" />
 
                     <!-- <CardComponent class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="movie.title"
                         :original_title="movie.original_title" :original_language="movie.original_language"
@@ -24,7 +24,7 @@
                         <OtherCard class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="serie.name"
                             :original_title="serie.original_title" :original_language="serie.original_language"
                             :vote_average="serie.vote_average" :poster_path="serie.poster_path" :overview="serie.overview"
-                            :id="serie.id" />
+                            :id="serie.id" :movie="serie" isMovie="false" />
                         <!-- <OtherCard class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="serie.name"
                         :original_title="serie.original_title" :original_language="serie.original_language"
                         :vote_average="serie.vote_average" :poster_path="serie.poster_path"/> -->
@@ -45,7 +45,6 @@
 <script>
 import { store } from '../data/store'
 import OtherCard from './OtherCard.vue';
-import CardComponent from './cardComponent.vue';
 
 export default {
     name: "MainComponent",
@@ -57,7 +56,7 @@ export default {
     methods: {
 
     },
-    components: { OtherCard, CardComponent }
+    components: { OtherCard }
 }
 </script>
 
