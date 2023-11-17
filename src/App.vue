@@ -21,6 +21,7 @@ export default {
     };
   },
   methods: {
+
     getMovies() {
       const url = store.apiUrl + store.endPoint.movie
       axios

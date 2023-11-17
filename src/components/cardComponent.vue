@@ -2,7 +2,7 @@
     <div class="my-card d-flex flex-column p-3 w-100 text-white" :style="'background-image: url(' + builtImgUrl + ');'"
         @mouseover="trigger()" @mouseleave="antiTrigger()">
 
-        <div class="card-height d-flex flex-column justify-content-end">
+        <div class="card-height d-flex flex-column justify-content-end align-items-center ">
             <img :src="builtImgUrl" alt="" class="miniImg" v-if="hovered">
             <div class="z-hight  " v-if="hovered">
                 <div class="title">{{ title }}</div>

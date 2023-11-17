@@ -6,7 +6,8 @@
                 <div class=" w-auto flex-grow-0 " v-for="movie in store.movieList" :key="movie">
                     <OtherCard class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="movie.title"
                         :original_title="movie.original_title" :original_language="movie.original_language"
-                        :vote_average="movie.vote_average" :poster_path="movie.poster_path" />
+                        :vote_average="movie.vote_average" :poster_path="movie.poster_path" :overview="movie.overview"
+                        :id="movie.id" />
 
                     <!-- <CardComponent class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="movie.title"
                         :original_title="movie.original_title" :original_language="movie.original_language"
@@ -22,7 +23,8 @@
                     <div class=" w-auto flex-grow-0 " v-for="serie in store.seriesList" :key="serie">
                         <OtherCard class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="serie.name"
                             :original_title="serie.original_title" :original_language="serie.original_language"
-                            :vote_average="serie.vote_average" :poster_path="serie.poster_path" />
+                            :vote_average="serie.vote_average" :poster_path="serie.poster_path" :overview="serie.overview"
+                            :id="serie.id" />
                         <!-- <OtherCard class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="serie.name"
                         :original_title="serie.original_title" :original_language="serie.original_language"
                         :vote_average="serie.vote_average" :poster_path="serie.poster_path"/> -->
@@ -45,13 +47,15 @@ import { store } from '../data/store'
 import OtherCard from './OtherCard.vue';
 import CardComponent from './cardComponent.vue';
 
-
 export default {
     name: "MainComponent",
     data() {
         return {
             store,
         };
+    },
+    methods: {
+
     },
     components: { OtherCard, CardComponent }
 }

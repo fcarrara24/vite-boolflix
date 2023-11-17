@@ -4,11 +4,12 @@ export const store = reactive({
     apiUrl: "https://api.themoviedb.org/3/",
     endPoint: {
         movie: "search/movie",
-        series: "search/tv"
+        series: "search/tv",
+        movieCast: "movie/"
     },
     params: {
         api_key: "2685b6a8f123b29cd4c75c4bd228e18e",
-        query: "a",
+        query: "",
         num: 20,
         offset: 0,
         language: "it-IT",

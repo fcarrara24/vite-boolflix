@@ -1,5 +1,5 @@
 <template>
-    <div class=" d-flex flex-row justify-content-between  bg-black position-fixed " @keyup.enter="emitParams"
+    <div class="search-bar d-flex flex-row justify-content-between  bg-black position-fixed " @keyup.enter="emitParams"
         placeholder="Cerca..">
         <div class="title text-danger ">
             BOOLFLIX
@@ -42,5 +42,10 @@ export default {
 <style lang="scss" scoped>
 .title {
     font-size: 2em;
+}
+
+.search-bar {
+    z-index: 3000;
+    perspective: 200px;
 }
 </style>
