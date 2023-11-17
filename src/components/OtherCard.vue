@@ -1,6 +1,7 @@
 <template>
     <div class="my-card d-flex flex-column p-3 w-100 text-white flip-card" @mouseover="trigger()"
-        @mouseleave="antiTrigger()" :style="'background-image: url(' + builtImgUrl + ');'" @click="getCredits()">
+        @mouseleave="antiTrigger()" :style="'background-image: url(' + builtImgUrl + ');'"
+        @click="getCredits(), getGenres()">
 
 
         <div class="card-height  p-3r flip-card-inner">
@@ -9,12 +10,17 @@
             <div v-if="hovered" class="d-flex flex-column justify-content-between h-100 flip-card-back">
                 <div class="p-2 overflow-auto ">
                     {{ overview }}
+                    <div class="cardcast py-2" v-if="cardCast.length > 0">
+                        <span class="py-1">ATTORI<br></span>
+                        <span v-for="person in cardCast">{{ person }} <br></span>
+                        <div class="genre py-2 ">
+                            genere: {{ genre }}
+                        </div>
+                    </div>
 
                 </div>
 
-                <div class="cardcast">
-                    <span v-for="person in cardCast">{{ person }}</span>
-                </div>
+
                 <div>
 
                     <div class="class">{{ authors }}</div>
@@ -54,7 +60,8 @@ export default {
         id: Number,
         cast: Array,
         movie: Object,
-        isMovie: Boolean
+        isMovie: Boolean,
+        genre_ids: String
 
     },
     data() {
@@ -64,7 +71,8 @@ export default {
             hovered: false,
             error: false,
             clicked: false,
-            cardCast: []
+            cardCast: [],
+            genre: '',
         }
     },
     methods: {
@@ -111,19 +119,32 @@ export default {
 
                         }
 
-                    } else {
-                        for (let i = 0; i < store.seriesList.length; i++) {
-                            if (store.seriesList[i].id === this.id) {
-                                store.seriesList[i].casts = cast
-                                this.cardCast = cast
-                            }
 
-                        }
                     }
                 })
 
 
         },
+        getGenres() {
+            axios
+                .get(store.genresUrl, { params: store.params })
+                .then((response) => {
+                    response.data.genres.forEach(element => {
+                        if (element.id === this.genre_ids) {
+                            this.genre = element.name
+
+                            return
+                        }
+
+                    });
+                    if (this.genre === '') {
+                        this.genre = 'No genre found'
+
+                    }
+                }
+                )
+        }
+
 
     },
     computed: {

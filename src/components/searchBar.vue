@@ -4,6 +4,7 @@
         <div class="title text-danger ">
             BOOLFLIX
         </div>
+        div.getGenre
         <div class="search-container d-flex  flex-row">
             <input v-model="textInput" type="text" />
             <div class="button bg-danger my-btn-search text-center p-2" @click="emitParams()">search</div>

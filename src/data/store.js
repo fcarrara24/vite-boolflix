@@ -2,6 +2,7 @@ import { reactive } from "vue"
 
 export const store = reactive({
     apiUrl: "https://api.themoviedb.org/3/",
+    genresUrl: "https://api.themoviedb.org/3/genre/movie/list",
     endPoint: {
         movie: "search/movie",
         series: "search/tv",
@@ -21,12 +22,9 @@ export const store = reactive({
 
 })
 
-// to get images init url, than you have to link the rest 342 500 for dimesnions acceptance
 /*
-https://image.tmdb.org/t/p/w342
+https://developers.themoviedb.org/3/genres/get-movie-list
+https://api.themoviedb.org/3/genre/movie/list?api_key=[MY_KEY]&language=en-US
 
 
-poster_path
-: 
-"/A4j8S6moJS2zNtRR8oWF08gRnL5.jpg"
 */

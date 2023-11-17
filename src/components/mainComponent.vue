@@ -7,7 +7,7 @@
                     <OtherCard class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="movie.title"
                         :original_title="movie.original_title" :original_language="movie.original_language"
                         :vote_average="movie.vote_average" :poster_path="movie.poster_path" :overview="movie.overview"
-                        :id="movie.id" :movie="movie" isMovie="true" />
+                        :id="movie.id" :movie="movie" isMovie="true" :genre_ids="movie.genre_ids[1]" />
 
                     <!-- <CardComponent class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="movie.title"
                         :original_title="movie.original_title" :original_language="movie.original_language"
@@ -24,7 +24,7 @@
                         <OtherCard class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="serie.name"
                             :original_title="serie.original_title" :original_language="serie.original_language"
                             :vote_average="serie.vote_average" :poster_path="serie.poster_path" :overview="serie.overview"
-                            :id="serie.id" :movie="serie" isMovie="false" />
+                            :id="serie.id" :movie="serie" isMovie="false" :genre_ids="serie.genre_ids[1]" />
                         <!-- <OtherCard class="col-3 col-md-4 col-lg-12 debugCol pb-5" :title="serie.name"
                         :original_title="serie.original_title" :original_language="serie.original_language"
                         :vote_average="serie.vote_average" :poster_path="serie.poster_path"/> -->
