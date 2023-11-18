@@ -9,6 +9,7 @@
 <script>
 import MainComponent from './components/MainComponent.vue';
 import SearchBar from './components/SearchBar.vue';
+
 import { store } from './data/store.js'
 import axios from 'axios'
 

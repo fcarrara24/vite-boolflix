@@ -1,6 +1,6 @@
 <template>
     <div class="my-card d-flex flex-column p-3 w-100 text-white flip-card" @mouseover="trigger()"
-        @mouseleave="antiTrigger()" :style="'background-image: url(' + builtImgUrl + ');'"
+        @mouseleave="antiTrigger()" :style="'background-image: url(' + builtImgUrl + ');'" @error="changeBgImg()"
         @click="getCredits(), getGenres()">
 
 
@@ -23,7 +23,6 @@
 
                 <div>
 
-                    <div class="class">{{ authors }}</div>
                     <div class="title">{{ title }}</div>
                     <div class="description">{{ original_title }}</div>
                     <div class="img-container">
@@ -61,7 +60,7 @@ export default {
         cast: Array,
         movie: Object,
         isMovie: Boolean,
-        genre_ids: String,
+        genre_ids: Number,
         genre_name: String
 
     },
@@ -74,10 +73,13 @@ export default {
             clicked: false,
             cardCast: [],
             genre: '',
+            bgImgNotFound: false
         }
     },
     methods: {
-
+        changeBgImg() {
+            this.bgImgNotFound = true
+        },
         trigger() {
             this.hovered = true
 
@@ -93,8 +95,13 @@ export default {
                 return
             }
             this.clicked = true
-            let cast = []
-            const myEndPoint = store.endPoint.movieCast + this.id + '/credits';
+            let cast = [];
+            let myEndPoint;
+            if (this.isMovie) {
+                myEndPoint = store.endPoint.movieCast + this.id + '/credits';
+            } else {
+                myEndPoint = store.endPoint.serieCast + this.id + '/credits';
+            }
             console.log(myEndPoint)
             const params = {
                 api_key: store.params.api_key
@@ -115,10 +122,19 @@ export default {
                             if (store.movieList[i].id === this.id) {
                                 store.movieList[i].casts = cast
                                 this.cardCast = cast
-
+                                console.log(response);
+                            }
+                        }
+                    } else {
+                        for (let i = 0; i < store.seriesList.length; i++) {
+                            if (store.seriesList[i].id === this.id) {
+                                store.seriesList[i].casts = cast
+                                this.cardCast = cast
                             }
                         }
                     }
+                }).catch(error => {
+                    console.log(error)
                 })
 
 
