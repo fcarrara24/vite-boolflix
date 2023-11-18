@@ -1,5 +1,6 @@
 <template>
   <SearchBar class="w-100 bg-black p-2" @change-values="getMovies(), getTv()" />
+  <div style="padding-top: 50px;"></div>
   <MainComponent />
 
   <div>

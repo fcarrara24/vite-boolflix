@@ -1,43 +1,44 @@
-<template>
-    <div class="my-card d-flex flex-column p-3 w-100 text-white flip-card" @mouseover="trigger()"
-        @mouseleave="antiTrigger()" :style="'background-image: url(' + builtImgUrl + ');'" @error="changeBgImg()"
-        @click="getCredits(), getGenres()">
+<template >
+    <div class="my-card d-flex flex-column p-3 w-100 text-white flip-card " @mouseover="trigger()"
+        @mouseleave="antiTrigger()" @click="getCredits(), getGenres()">
 
+        <div class="bg-resizer" :style="'background-image: url(' + builtImgUrl + ');'" @error="changeBgImg()">
 
-        <div class="card-height  p-3r flip-card-inner">
-            <div class="flip-card-front"></div>
-            <!-- v-if="hovered" -->
-            <div v-if="hovered" class="d-flex flex-column justify-content-between h-100 flip-card-back">
-                <div class="p-2 overflow-auto ">
-                    {{ overview }}
-                    <div class="cardcast py-2" v-if="cardCast.length > 0">
-                        <span class="py-1">ATTORI<br></span>
-                        <span v-for="person in cardCast">{{ person }} <br></span>
-                        <div class="genre py-2 ">
-                            genere: {{ genre }}
+            <div class="card-height  p-3r flip-card-inner">
+                <div class="flip-card-front"></div>
+                <!-- v-if="hovered" -->
+                <div v-if="hovered" class="d-flex flex-column justify-content-between h-100 flip-card-back">
+                    <div class="p-2 overflow-auto ">
+                        {{ overview }}
+                        <div class="cardcast py-2" v-if="cardCast.length > 0">
+                            <span class="py-1">ATTORI<br></span>
+                            <span v-for="person in cardCast">{{ person }} <br></span>
+                            <div class="genre py-2 ">
+                                genere: {{ genre }}
+                            </div>
                         </div>
+
                     </div>
 
-                </div>
 
+                    <div>
 
-                <div>
-
-                    <div class="title">{{ title }}</div>
-                    <div class="description">{{ original_title }}</div>
-                    <div class="img-container">
-                        <img :src="getFlagUrl" @error="toDefSrc()">
-                    </div>
-                    <div class="description d-flex flex-row justify-content-start gap-2 align-items-center">
-                        <div class="img-container" v-for="num in 5" key="num">
-                            <i class="fa-star"
-                                :class="(num <= Math.ceil(vote_average / 2)) ? 'fa-solid' : 'fa-regular'"></i>
+                        <div class="title">{{ title }}</div>
+                        <div class="description">{{ original_title }}</div>
+                        <div class="img-container">
+                            <img :src="getFlagUrl" @error="toDefSrc()">
+                        </div>
+                        <div class="description d-flex flex-row justify-content-start gap-2 align-items-center">
+                            <div class="img-container" v-for="num in 5" key="num">
+                                <i class="fa-star"
+                                    :class="(num <= Math.ceil(vote_average / 2)) ? 'fa-solid' : 'fa-regular'"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
 
 
     </div>
@@ -79,6 +80,7 @@ export default {
     methods: {
         changeBgImg() {
             this.bgImgNotFound = true
+            alert('not found')
         },
         trigger() {
             this.hovered = true
@@ -160,7 +162,11 @@ export default {
     },
     computed: {
         builtImgUrl() {
-            return 'https://image.tmdb.org/t/p/w342' + this.poster_path
+            if (!this.hovered) {
+                return 'https://image.tmdb.org/t/p/w342' + this.poster_path
+            } else {
+                return ''
+            }
         },
 
         getFlagUrl() {
@@ -198,24 +204,19 @@ export default {
     background-position: center;
 
     perspective: 1000px;
-
 }
 
-.my-card:hover {
-
-    background-image: none !important;
-
+.bg-resizer {
+    background-position: center;
 }
 
 .card-height {
 
-    height: 600px;
-    width: 400px;
+    height: 400px;
+    width: 300px;
 }
 
-.big-img-container {
-    width: 100%;
-}
+
 
 .img-container {
     width: 20px;
@@ -225,10 +226,6 @@ img {
     min-width: 100%;
     max-width: 100%;
     height: auto;
-}
-
-.z-hight {
-    z-index: 1000;
 }
 
 .miniImg {

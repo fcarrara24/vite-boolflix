@@ -135,5 +135,6 @@ option {
 .outline {
     border: 1px solid gray;
 
+
 }
 </style>
