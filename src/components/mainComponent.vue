@@ -9,7 +9,7 @@
             <h2 class=" p-5 pt-2">MOVIES</h2>
 
             <div class="d-flex flex-row align-items-center w-100">
-                <div class="scroll-btn d-flex flex-column justify-content-center p-3"
+                <div class="scroll-btn d-flex flex-column justify-content-center p-3" v-if="moviesResults"
                     @click="scrollCarosello(-1), stopNextScroll()">
                     <i class="fa-solid fa-angle-left" style="color: #ffffff;"></i>
                 </div>
@@ -23,9 +23,12 @@
                             :genre_name="movie.genre_ids[0]" :firstResult="index === 0" />
                     </div>
                 </div>
-                <div class="scroll-btn d-flex flex-column justify-content-center p-3"
+                <div class="scroll-btn d-flex flex-column justify-content-center p-3" v-if="moviesResults"
                     @click="scrollCarosello(1), stopNextScroll()">
                     <i class="fa-solid fa-angle-right" style="color: #ffffff;"></i>
+                </div>
+                <div v-if="!moviesResults" class=" text-white p-3">
+                    NESSUN FILM TROVATO
                 </div>
             </div>
 
@@ -34,7 +37,7 @@
         <section class=" text-white ">
             <h2 class="p-5">TV</h2>
             <div class="d-flex flex-row align-items-center w-100">
-                <div class="scroll-btn d-flex flex-column justify-content-center p-3"
+                <div class="scroll-btn d-flex flex-column justify-content-center p-3" v-if="seriesResults"
                     @click="scrollCarosello(-1), stopNextScroll()">
                     <i class="fa-solid fa-angle-left" style="color: #ffffff;"></i>
                 </div>
@@ -48,9 +51,12 @@
                             :firstResult="index === -1" />
                     </div>
                 </div>
-                <div class="scroll-btn d-flex flex-column justify-content-center p-3"
+                <div class="scroll-btn d-flex flex-column justify-content-center p-3" v-if="seriesResults"
                     @click="scrollCarosello(1), stopNextScroll()">
                     <i class="fa-solid fa-angle-right" style="color: #ffffff;"></i>
+                </div>
+                <div v-if="!seriesResults" class=" text-white p-3">
+                    NESSUNA SERIE TROVATA
                 </div>
             </div>
         </section>
@@ -68,7 +74,8 @@ export default {
             store,
             trueReturner: true,
             clickedBtn: false,
-
+            moviesResults: true,
+            seriesResults: true
         };
     },
     methods: {
@@ -105,6 +112,14 @@ export default {
                 clearInterval(delay)
             }
         }, 3000);
+    },
+    computed: {
+        moviesResults() {
+            return (store.movieList.length > 0)
+        },
+        seriesResults() {
+            return (store.seriesList.length > 0)
+        }
     },
     components: { OtherCard, MidComponent }
 }

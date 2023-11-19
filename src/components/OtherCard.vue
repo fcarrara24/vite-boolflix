@@ -172,6 +172,8 @@ export default {
         builtImgUrl() {
             if (!this.hovered) {
                 return 'https://image.tmdb.org/t/p/w342' + this.poster_path
+            } else if (this.bgImgNotFound) {
+                return '../assets/images/placeHolderImg.jpeg'
             } else {
                 return ''
             }
