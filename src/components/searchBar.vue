@@ -1,11 +1,11 @@
 <template>
     <div class="search-bar d-flex flex-row justify-content-between  bg-black position-fixed d-flex flex-row align-items-center px-5 "
         @keyup.enter="emitParams" placeholder="Cerca..">
-        <div class="title text-danger h-100">
+        <div class="title text-danger h-100 d-none d-md-block ">
             <img src="../assets/images/boolflix-logo.png" class="logo-adapter" alt="BOOLFLIX">
         </div>
         <div class="d-flex flex-row justify-content-center">
-            <div class="home pe-5">
+            <div class="home pe-5 d-none d-sm-block ">
                 <i class="fa-solid fa-home" style="color: white;"></i>
             </div>
             <div class="genrefinder">

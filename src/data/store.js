@@ -23,12 +23,11 @@ export const store = reactive({
     movieList: [],
     seriesList: [],
     genreList: [],
-    filteredGenres: ''
+    filteredGenres: '',
+
+    backDropSelected: '',
+    titleSelected: '',
+
+
 })
 
-/*
-https://developers.themoviedb.org/3/genres/get-movie-list
-https://api.themoviedb.org/3/genre/movie/list?api_key=[MY_KEY]&language=en-US
-
-
-*/

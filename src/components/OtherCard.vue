@@ -1,6 +1,6 @@
 <template >
     <div class="my-card d-flex flex-column p-3 w-100 text-white flip-card " @mouseover="trigger()"
-        @mouseleave="antiTrigger()" @click="getCredits(), getGenres()">
+        @mouseleave="antiTrigger()" @click="getCredits(), getGenres(), updateMidComponent()">
 
         <div class="bg-resizer" :style="'background-image: url(' + builtImgUrl + ');'" @error="changeBgImg()">
 
@@ -38,6 +38,9 @@
                 </div>
             </div>
 
+
+
+
         </div>
 
 
@@ -56,6 +59,7 @@ export default {
         original_language: String,
         vote_average: Number,
         poster_path: String,
+        backdrop_path: String,
         overview: String,
         id: Number,
         cast: Array,
@@ -80,7 +84,6 @@ export default {
     methods: {
         changeBgImg() {
             this.bgImgNotFound = true
-            alert('not found')
         },
         trigger() {
             this.hovered = true
@@ -154,6 +157,11 @@ export default {
                 this.genre = ''
 
             }
+        },
+        updateMidComponent() {
+
+            store.backDropSelected = this.backdrop_path
+            store.titleSelected = this.title + ' trailer'
         }
 
 
@@ -204,6 +212,8 @@ export default {
     background-position: center;
 
     perspective: 1000px;
+    position: relative;
+
 }
 
 .bg-resizer {
