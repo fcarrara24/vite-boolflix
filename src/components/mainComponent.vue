@@ -14,13 +14,13 @@
                     <i class="fa-solid fa-angle-left" style="color: #ffffff;"></i>
                 </div>
                 <div class="d-flex flex-row flex-nowrap   overflow-x-scroll carousel-container" ref="caroselloContainerTop">
-                    <div class=" w-auto flex-grow-0 " v-for="movie in store.movieList" :key="movie">
+                    <div class=" w-auto flex-grow-0 " v-for="(movie, index ) in store.movieList" :key="movie">
                         <OtherCard class=" " v-if="filterGenre(movie.genre_ids[1])" :title="movie.title"
                             :original_title="movie.original_title" :original_language="movie.original_language"
                             :backdrop_path="movie.backdrop_path" :vote_average="movie.vote_average"
                             :poster_path="movie.poster_path" :overview="movie.overview" :id="movie.id"
                             :isMovie="trueReturner" :genre_ids="parseInt(movie.genre_ids[1])"
-                            :genre_name="movie.genre_ids[0]" />
+                            :genre_name="movie.genre_ids[0]" :firstResult="index === 0" />
                     </div>
                 </div>
                 <div class="scroll-btn d-flex flex-column justify-content-center p-3"
@@ -39,12 +39,13 @@
                     <i class="fa-solid fa-angle-left" style="color: #ffffff;"></i>
                 </div>
                 <div class="d-flex flex-row flex-nowrap   overflow-x-scroll carousel-container" ref="caroselloContainerBot">
-                    <div class=" w-auto flex-grow-0 " v-for="serie in store.seriesList" :key="serie">
+                    <div class=" w-auto flex-grow-0 " v-for="(serie, index) in store.seriesList" :key="serie">
                         <OtherCard class="" v-if="filterGenre(serie.genre_ids[1])" :title="serie.name"
                             :original_title="serie.original_title" :original_language="serie.original_language"
                             :vote_average="serie.vote_average" :poster_path="serie.poster_path" :overview="serie.overview"
                             :id="serie.id" :isMovie="!trueReturner" :genre_ids="parseInt(serie.genre_ids[1])"
-                            :genre_name="serie.genre_ids[0]" :backdrop_path="serie.backdrop_path" />
+                            :genre_name="serie.genre_ids[0]" :backdrop_path="serie.backdrop_path"
+                            :firstResult="index === -1" />
                     </div>
                 </div>
                 <div class="scroll-btn d-flex flex-column justify-content-center p-3"

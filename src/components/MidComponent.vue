@@ -1,12 +1,12 @@
 <template>
     <div class="whole-component d-flex flex-row justify-content-center position-relative ">
         <div class="video-component position-absolute d-flex flex-column align-items-center  ">
-            <div v-if="videoId" class="w-100">
+            <div v-if="videoId" class="w-100 h-100 p-2  d-flex flex-row justify-content-center flex-grow-0 ">
                 <iframe class="adaptDimensionsFilm"
                     :src="'https://www.youtube.com/embed/' + videoId + '?autoplay=1&modestbranding=1&controls=0'"
                     frameborder="0" allowfullscreen></iframe>
             </div>
-            <div class="title">
+            <div class="title text-white text-center ">
                 {{ store.titleSelected }}
             </div>
         </div>
@@ -24,7 +24,7 @@ export default {
 
 
         return {
-            videoId: 'Opxhh9Oh3rg',
+            videoId: 'v=waJKJW_XU90',
             store,
         }
     },
@@ -36,7 +36,7 @@ export default {
             const response = axios
                 .get('https://www.googleapis.com/youtube/v3/search', {
                     params: {
-                        key: 'AIzaSyBjCfQ44t0qX0QTOcaS5Stj6ifELAF3SEk',
+                        key: 'AIzaSyDCYTLkMlEeeF5WkbGh-W6m6BcpbCjh2tw',
                         q: title,
                         part: 'snippet',
                         type: 'video',
@@ -74,7 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 .whole-component {
-    background-color: red;
+    background-color: #dc1a28;
     width: 100%;
     min-height: 500px;
     position: relative;
@@ -88,20 +88,18 @@ export default {
 }
 
 .video-component {
-    height: 50vw;
     width: 50vw;
     max-width: 60vh;
-    max-height: 60vh;
-    background-color: blue;
+    max-height: 40vh;
+    background-image: linear-gradient();
+    border: 30px solid transparent;
     top: 50%;
     transform: translate(0, -50%);
 }
 
 .adaptDimensionsFilm {
-
-    height: auto;
+    // expected height rateo is width = 1.77 height 
     min-height: 50%;
-    min-width: 100%;
-    max-width: 100%;
+    min-width: 90%;
 }
 </style>

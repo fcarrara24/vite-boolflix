@@ -66,8 +66,8 @@ export default {
         movie: Object,
         isMovie: Boolean,
         genre_ids: Number,
-        genre_name: String
-
+        genre_name: String,
+        firstResult: Boolean
     },
     data() {
 
@@ -195,6 +195,12 @@ export default {
                 return 'https://flagsapi.com/' + parsedString + '/flat/64.png';
             }
 
+        },
+
+    },
+    created() {
+        if (this.firstResult) {
+            this.updateMidComponent()
         }
     }
 }
