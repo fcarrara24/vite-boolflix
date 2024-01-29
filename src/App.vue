@@ -1,7 +1,7 @@
 <template>
   <SearchBar class="w-100 bg-black p-2" @change-values="getMovies(), getTv()" />
   <MainComponent class="paddingCostume" />
-
+  
   <div>
   </div>
 </template>
@@ -55,8 +55,9 @@ export default {
   },
   components: {
     SearchBar,
-    MainComponent
-  },
+    MainComponent,
+    SearchBar
+},
   created() {
     this.getMovies();
     this.getTv();
